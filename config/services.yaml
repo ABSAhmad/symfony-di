@@ -21,5 +21,13 @@ services:
             - '../src/Kernel.php'
             - '../src/Tests/'
 
+    _instanceof:
+      App\RiskManagementRule:
+        tags: [app.risk_management_rule]
+
+    App\RiskService:
+      arguments:
+        $riskRules: !tagged_iterator app.risk_management_rule
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
